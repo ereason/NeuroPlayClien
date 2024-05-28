@@ -1,0 +1,111 @@
+﻿<Page
+    x:Class="GazeExperiment.ImagesExperimentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    
+    xmlns:g="using:Microsoft.Toolkit.Uwp.Input.GazeInteraction"
+    g:GazeInput.Interaction="Enabled"
+    g:GazeInput.IsCursorVisible="True"
+    g:GazeInput.IsSwitchEnabled="False"
+    g:GazeInput.CursorRadius="20"
+    Style="{StaticResource MainPage}">
+
+    <Page.Resources>
+        <ui:AttachedDropShadow x:Key="CommonShadow" Opacity="0.2" CornerRadius="10" CastTo="{x:Bind ShadowTarget}"/>
+    </Page.Resources>
+
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="6*" ></RowDefinition>
+            <RowDefinition  Height="4*" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border x:Name="ShadowTarget"/>
+
+        <Image 
+            x:Name="circle" 
+            Height="500" 
+            Width="500"/>
+
+
+        <StackPanel Orientation="Horizontal" Spacing="200" HorizontalAlignment="Center" Grid.Row="1">
+
+            <Button
+                ui:Effects.Shadow="{StaticResource CommonShadow}"
+                Style="{StaticResource ButtonStyle}" 
+                x:Name="TargetButton1" 
+                Click="Button_Click"  
+                HorizontalAlignment="Center"   
+                HorizontalContentAlignment="Center"
+  
+                g:GazeInput.ThresholdDuration="00:00:00.3500000" 
+                g:GazeInput.FixationDuration="00:00:00.001000"
+                g:GazeInput.DwellDuration="00:00:00.1000000"
+                g:GazeInput.RepeatDelayDuration="00:00:00.4000000"
+                g:GazeInput.DwellRepeatDuration="00:00:00.4000000"
+                g:GazeInput.MaxDwellRepeatCount="0"
+
+                Width="200"
+                Height="150" >
+
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            
+                            <ResourceDictionary x:Key="Dark">
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Gray"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="White"/>
+                            </ResourceDictionary>
+                            
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+
+
+                <TextBlock HorizontalTextAlignment="Center"> Звук. <LineBreak/>  Наведите взгляд.</TextBlock>
+            </Button>
+
+            <Button 
+                ui:Effects.Shadow="{StaticResource CommonShadow}"  
+                Style="{StaticResource ButtonStyle}" 
+                x:Name="TargetButton2" 
+                Click="Button_Click2"
+                HorizontalAlignment="Center"  
+                HorizontalContentAlignment="Center"
+                g:GazeInput.ThresholdDuration="00:00:00.3500000" 
+                g:GazeInput.FixationDuration="00:00:00.001000"
+                g:GazeInput.DwellDuration="00:00:00.1000000"
+                g:GazeInput.RepeatDelayDuration="00:00:00.4000000"
+                g:GazeInput.DwellRepeatDuration="00:00:00.4000000"
+                g:GazeInput.MaxDwellRepeatCount="0"
+
+                Width="200"
+                Height="150">
+
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Dark">
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Gray"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="White"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+
+                <TextBlock HorizontalTextAlignment="Center"> Изображение. <LineBreak/>  Наведите взгляд.</TextBlock>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+
+</Page>
