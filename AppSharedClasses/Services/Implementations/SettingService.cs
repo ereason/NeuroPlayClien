@@ -4,7 +4,7 @@ using AppSharedClasses.Services.Interfaces;
 
 namespace AppSharedClasses.Services.Implementations
 {
-    public class SettingService : ISettingsService {
+public class SettingService : ISettingsService {
         private UserSettings _userSettings;
 
         public ServiceResult<string> GetExperimentId() {

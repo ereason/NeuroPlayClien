@@ -106,6 +106,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Experiments\Settings.cs" />
     <Compile Include="Pages\Experiments\ShapeExperiment.xaml.cs">
       <DependentUpon>ShapeExperiment.xaml</DependentUpon>
     </Compile>

@@ -15,10 +15,11 @@ using Windows.Storage;
 using System.Collections.Concurrent;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
+using AppSharedClasses.Models;
 
 namespace GazeExperiment
 {
-    public sealed partial class ImagesExperimentPage : Page
+public sealed partial class ImagesExperimentPage : Page
     {
         protected const double _discretization = 0.5;
         protected Random _rnd = new Random(DateTime.Now.Millisecond);
@@ -39,7 +40,7 @@ namespace GazeExperiment
             this.InitializeComponent();
             dialogResult = new MessageDialog("Экспермент закончен.");
         }
-     
+      
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -55,10 +56,11 @@ namespace GazeExperiment
             };
 
             _settingsService.SetUserSettings(userSettings);
+            var st = Pages.Experiments.Settings.getSettings(userData.UserType);
 
-            int countIteration = 50;
-            double durationShow = 2;
-            double durationPause = 2;
+            int countIteration = st.countIteration;
+            double durationShow = st.durationShow;
+            double durationPause = st.durationPause;
 
             var listShowValues = GetListPossibleValues(durationShow);
             var listPauseValues = GetListPossibleValues(durationPause);
@@ -96,7 +98,7 @@ namespace GazeExperiment
             var images = await GetImages();
             circle.Visibility = Visibility.Collapsed;
             await Task.Delay(2000);
-            for (int i = 0; i < 2 ; i++) {
+            for (int i = 0; i < _settings.Count; i++) {
             
                 string text = _settings[i].IsShowImage ?
                     AppSharedClasses.Resources.Messages.imgShowed : AppSharedClasses.Resources.Messages.playedSound;

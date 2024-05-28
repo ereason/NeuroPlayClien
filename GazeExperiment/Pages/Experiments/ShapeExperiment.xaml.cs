@@ -42,10 +42,11 @@ namespace GazeExperiment.Pages.Experiments
             };
 
             _settingsService.SetUserSettings(userSettings);
+            var st = Pages.Experiments.Settings.getSettings(userData.UserType);
 
-            int countIteration = 50;
-            double durationShow = 2;
-            double durationPause = 2;
+            int countIteration = st.countIteration;
+            double durationShow = st.durationShow;
+            double durationPause = st.durationPause;
 
             var listShowValues = GetListPossibleValues(durationShow);
             var listPauseValues = GetListPossibleValues(durationPause);
@@ -81,11 +82,11 @@ namespace GazeExperiment.Pages.Experiments
             _startTime = DateTime.Now;
             //await _neuroPlayService.StartRecordAsync();
             //await _neuroPlayService.AddMarkerAsync("0", $"id:{_settingsService.GetExperimentId().Data}");
-            await Task.Delay(1000);
+            await Task.Delay(2000);
 
             var greenBrush = new SolidColorBrush(Windows.UI.Colors.Green);
             var redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < _settings.Count; i++)
             {
                 circle.Fill = _settings[i].IsGreenImage ? greenBrush : redBrush;
 
